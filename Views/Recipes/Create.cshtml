@@ -1,0 +1,54 @@
+@model RecipeBookWebApp.Models.Recipe
+@{
+    ViewData["Title"] = "Add Recipe";
+}
+
+<h1>Add Recipe</h1>
+
+<form asp-action="Create" method="post" class="recipe-form">
+    <div asp-validation-summary="ModelOnly" class="validation"></div>
+
+    <label asp-for="Title"></label>
+    <input asp-for="Title" />
+    <span asp-validation-for="Title" class="validation"></span>
+
+    <label asp-for="Category"></label>
+    <input asp-for="Category" placeholder="Dinner, Dessert, Soup..." />
+
+    <div class="form-row">
+        <div>
+            <label asp-for="Servings"></label>
+            <input asp-for="Servings" />
+        </div>
+
+        <div>
+            <label asp-for="PrepTimeMinutes"></label>
+            <input asp-for="PrepTimeMinutes" />
+        </div>
+
+        <div>
+            <label asp-for="CookTimeMinutes"></label>
+            <input asp-for="CookTimeMinutes" />
+        </div>
+    </div>
+
+    <label asp-for="Ingredients"></label>
+    <textarea asp-for="Ingredients" rows="10"
+              placeholder="2 cups flour&#10;1 tsp salt&#10;3 large eggs"></textarea>
+    <span asp-validation-for="Ingredients" class="validation"></span>
+
+    <label asp-for="Instructions"></label>
+    <textarea asp-for="Instructions" rows="12"
+              placeholder="1. Preheat oven...&#10;2. Mix ingredients..."></textarea>
+    <span asp-validation-for="Instructions" class="validation"></span>
+
+    <label asp-for="Notes"></label>
+    <textarea asp-for="Notes" rows="5"></textarea>
+
+    <label asp-for="Source"></label>
+    <input asp-for="Source" placeholder="Family recipe, cookbook, or URL" />
+
+    <button type="submit">Save Recipe</button>
+</form>
+
+<p><a asp-action="Index">Back to Recipes</a></p>

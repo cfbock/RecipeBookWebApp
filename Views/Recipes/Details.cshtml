@@ -1,0 +1,52 @@
+@model RecipeBookWebApp.Models.Recipe
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<article class="recipe-detail">
+    <h1>@Model.Title</h1>
+
+    <div class="recipe-meta">
+        @if (!string.IsNullOrWhiteSpace(Model.Category))
+        {
+            <span><strong>Category:</strong> @Model.Category</span>
+        }
+        <span><strong>Servings:</strong> @Model.Servings</span>
+        <span><strong>Prep:</strong> @Model.PrepTimeMinutes min</span>
+        <span><strong>Cook:</strong> @Model.CookTimeMinutes min</span>
+        <span><strong>Total:</strong> @Model.TotalTimeMinutes min</span>
+    </div>
+
+    <section>
+        <h2>Ingredients</h2>
+        <div class="multiline">@Model.Ingredients</div>
+    </section>
+
+    <section>
+        <h2>Instructions</h2>
+        <div class="multiline">@Model.Instructions</div>
+    </section>
+
+    @if (!string.IsNullOrWhiteSpace(Model.Notes))
+    {
+        <section>
+            <h2>Notes</h2>
+            <div class="multiline">@Model.Notes</div>
+        </section>
+    }
+
+    @if (!string.IsNullOrWhiteSpace(Model.Source))
+    {
+        <section>
+            <h2>Source</h2>
+            <p>@Model.Source</p>
+        </section>
+    }
+
+    <p class="muted">Added @Model.CreatedAt.ToString("MMMM d, yyyy")</p>
+
+    <p>
+        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+        <a asp-action="Index">Back to Recipes</a>
+    </p>
+</article>

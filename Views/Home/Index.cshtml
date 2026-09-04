@@ -1,0 +1,11 @@
+@{
+    ViewData["Title"] = "Home";
+}
+<section class="hero">
+    <h1>Recipe Book</h1>
+    <p>Store complete recipes with ingredients, measurements, instructions, timings, servings, notes, and sources.</p>
+    <p>
+        <a class="button" asp-controller="Recipes" asp-action="Index">Browse Recipes</a>
+        <a class="button secondary" asp-controller="Recipes" asp-action="Create">Add a Recipe</a>
+    </p>
+</section>

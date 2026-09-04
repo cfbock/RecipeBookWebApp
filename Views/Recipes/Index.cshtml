@@ -1,0 +1,50 @@
+@model IEnumerable<RecipeBookWebApp.Models.Recipe>
+@{
+    ViewData["Title"] = "Recipes";
+}
+
+<h1>Recipes</h1>
+
+<div class="toolbar">
+    <a class="button" asp-action="Create">Add Recipe</a>
+
+    <form asp-action="Index" method="get" class="search">
+        <input name="searchString"
+               value="@ViewData["CurrentFilter"]"
+               placeholder="Search title, category, or ingredient" />
+        <button type="submit">Search</button>
+        <a asp-action="Index">Clear</a>
+    </form>
+</div>
+
+@if (!Model.Any())
+{
+    <p>No recipes found.</p>
+}
+else
+{
+    <div class="recipe-grid">
+    @foreach (var item in Model)
+    {
+        <article class="recipe-card">
+            <h2>@item.Title</h2>
+
+            @if (!string.IsNullOrWhiteSpace(item.Category))
+            {
+                <p><strong>Category:</strong> @item.Category</p>
+            }
+
+            <p>
+                <strong>Servings:</strong> @item.Servings<br />
+                <strong>Total time:</strong> @item.TotalTimeMinutes min
+            </p>
+
+            <div class="card-actions">
+                <a asp-action="Details" asp-route-id="@item.Id">View</a>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </div>
+        </article>
+    }
+    </div>
+}
